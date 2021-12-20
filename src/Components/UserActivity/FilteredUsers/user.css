@@ -1,0 +1,9 @@
+.userDiv {
+  box-shadow: 0.25em 0.25em 0.75em rgb(0 0 0 / 55%),
+    0.125em 0.125em 0.25em rgb(0 0 0 / 25%);
+}
+.userDiv img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

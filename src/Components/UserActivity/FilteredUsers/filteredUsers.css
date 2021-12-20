@@ -1,0 +1,7 @@
+.customHeight {
+  min-height: 85vh;
+}
+.navLink,
+a {
+  text-decoration: none !important;
+}
