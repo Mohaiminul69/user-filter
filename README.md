@@ -1,4 +1,4 @@
-# Project Name: Chaldal Assesment Test
+# Project Name: Redux User Filter
 
 ## Description
 
