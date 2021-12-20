@@ -16,10 +16,14 @@ import FormLabel from "@mui/material/FormLabel";
 import { useForm, Controller } from "react-hook-form";
 import "./userActivity.css";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFilterInput } from "../../features/Users/UsersSlice";
 
 const EditFilter = () => {
+  const data = useSelector((state) => state.user.filterInput);
+  console.log(data.from, data.to);
+  const previousStartDate = data.from;
+  const previousEndDate = data.to;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [value1, setValue1] = useState(new Date("2014-08-18T21:11:54"));
@@ -33,14 +37,18 @@ const EditFilter = () => {
   };
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      from: "",
-      to: "",
-      userType: "",
+      from: data.from,
+      to: data.to,
+      userType: data.userType,
     },
   });
   const onSubmit = (data) => {
-    data.from = data.from.toLocaleDateString("en-ZA");
-    data.to = data.to.toLocaleDateString("en-ZA");
+    if (previousStartDate !== data.from) {
+      data.from = data.from.toLocaleDateString("en-ZA");
+    }
+    if (previousEndDate !== data.to) {
+      data.to = data.to.toLocaleDateString("en-ZA");
+    }
     dispatch(addFilterInput(data));
     navigate("/filteredUsers");
   };

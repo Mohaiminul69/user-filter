@@ -4,10 +4,42 @@ import user2 from "../../data/20566.json";
 import user3 from "../../data/10780.json";
 import user4 from "../../data/27366.json";
 import user5 from "../../data/21632.json";
+import user6 from "../../data/29127.json";
+import user7 from "../../data/13116.json";
+import user8 from "../../data/14842.json";
+import user9 from "../../data/17172.json";
+import user10 from "../../data/30024.json";
+import user11 from "../../data/30332.json";
+import user12 from "../../data/31870.json";
+import user13 from "../../data/33550.json";
+import user14 from "../../data/34407.json";
+import user15 from "../../data/34429.json";
+import user16 from "../../data/36495.json";
+import user17 from "../../data/37327.json";
+import user18 from "../../data/38639.json";
 
 const initialState = {
   filterInput: "",
-  allUserData: [user1, user2, user3, user4, user5],
+  allUserData: [
+    user1,
+    user2,
+    user3,
+    user4,
+    user5,
+    user6,
+    user7,
+    user8,
+    user9,
+    user10,
+    user11,
+    user12,
+    user13,
+    user14,
+    user15,
+    user16,
+    user17,
+    user18,
+  ],
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
