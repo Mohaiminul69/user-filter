@@ -11,18 +11,17 @@ const FilteredUsers = () => {
   const [displayUsers, setDisplayUsers] = useState([]);
   const data = useSelector((state) => state.user.filterInput);
   const allUsersdata = useSelector((state) => state.user.allUserData);
-  console.log(data);
-  // console.log(allUsersdata);
   const mealsTaken = [];
   const usersProfileInfo = [];
 
-  // This function filters the type of the user by user Activity
-  // This function filters the type of the user by user Activity
-  // This function filters the type of the user by user Activity
+  /*
+<------------------- This function filters the type of the user by user Activity ------------------->
+<------------------- This function filters the type of the user by user Activity ------------------->
+<------------------- This function filters the type of the user by user Activity ------------------->
+*/
   const filterUserType = (userData, userId) => {
     const userProfileInfoWithId = { ...userData.profile, userId };
     if (data.userType === "super-active" && mealsTaken.length > 10) {
-      console.log("Super Active User");
       usersProfileInfo.push(userProfileInfoWithId);
     }
     if (
@@ -30,7 +29,6 @@ const FilteredUsers = () => {
       mealsTaken.length > 5 &&
       mealsTaken.length <= 10
     ) {
-      console.log("Active User");
       usersProfileInfo.push(userProfileInfoWithId);
     }
     if (
@@ -38,11 +36,15 @@ const FilteredUsers = () => {
       mealsTaken.length > 0 &&
       mealsTaken.length <= 5
     ) {
-      console.log("Bored User");
       usersProfileInfo.push(userProfileInfoWithId);
     }
   };
 
+  /*
+<----------- Filtering users by the date they were Active & the number of times the got a meal ----------->
+<----------- Filtering users by the date they were Active & the number of times the got a meal ----------->
+<----------- Filtering users by the date they were Active & the number of times the got a meal ----------->
+*/
   const filterUsers = (userData) => {
     const activeDates = userData.calendar.dateToDayId;
     const daysWithDetails = userData.calendar.daysWithDetails;
@@ -65,7 +67,7 @@ const FilteredUsers = () => {
           const mealsFound = daysWithDetails[dateId].details.mealsWithDetails;
           for (const meal in mealsFound) {
             mealsTaken.push(daysWithDetails[dateId]);
-            console.log(meal);
+            // console.log(meal);
           }
         }
       }
@@ -75,16 +77,14 @@ const FilteredUsers = () => {
     // Filtering the type of user based on user activity by calling filterUserType Function
     // Filtering the type of user based on user activity by calling filterUserType Function
     filterUserType(userData, userId);
-
-    // console.log(data);
-    // console.log(daysWithDetails);
-    // console.log(mealsTaken);
-    // console.log(usersProfileInfo);
-    //console.log(datesFound); // User was active in these days.
   };
 
-  console.log(usersProfileInfo);
+  /*
+<------------------- Mapping each user from the list of all users ------------------->
+<------------------- Mapping each user from the list of all users ------------------->
+*/
   allUsersdata.map((user) => filterUsers(user));
+
   useEffect(() => {
     setDisplayUsers([...usersProfileInfo]);
   }, []);
@@ -94,13 +94,13 @@ const FilteredUsers = () => {
     const matchedUsers = usersProfileInfo.filter((user) =>
       user.name.toLowerCase().includes(searchText.toLowerCase())
     );
-    console.log(matchedUsers);
     setDisplayUsers(matchedUsers);
   };
 
-  console.log(displayUsers);
-  console.log(usersProfileInfo);
-
+  /*
+<------------- Showing there is no user found if there is no user found from filtering  ------------->
+<----------------- Also wanted to make more changes according to user avaiablility  ----------------->
+*/
   if (displayUsers.length === 0)
     return (
       <div>
@@ -147,6 +147,9 @@ const FilteredUsers = () => {
               Showing {data.userType === "other" ? "Bored" : data.userType}{" "}
               Users
             </h6>
+            {/*
+<------------------- Rediricting to the Edit Filter Page ------------------->
+*/}
             <Link to="/editFilter">
               <div className="textAqua d-flex">
                 <p>Edit Filter</p>
@@ -154,12 +157,18 @@ const FilteredUsers = () => {
               </div>
             </Link>
           </div>
+          {/*
+<------------------- Search Input Filed that searches by user name ------------------->
+*/}
           <InputGroup className="mb-3">
             <InputGroup.Text id="basic-addon1" className="bg-light">
               <i className="fas fa-search"></i>
             </InputGroup.Text>
             <FormControl onChange={handleSearch} placeholder="Search by name" />
           </InputGroup>
+          {/*
+<---------------- Mapping Each filtered user and showing them to the UI ---------------->
+*/}
           {displayUsers.map((profile) => (
             <Users key={profile.name} profile={profile} />
           ))}

@@ -38,6 +38,8 @@ const UserActivity = () => {
       userType: "",
     },
   });
+  // Filter inputs are stored to the redux store on form submit
+  // Filter inputs are stored to the redux store on form submit
   const onSubmit = (data) => {
     data.from = data.from.toLocaleDateString("en-ZA");
     data.to = data.to.toLocaleDateString("en-ZA");
@@ -58,6 +60,9 @@ const UserActivity = () => {
             <hr />
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <Stack spacing={3}>
+                {/*
+<------------------- Date Picker Input that dates dates as input ------------------->
+*/}
                 <Controller
                   name="from"
                   control={control}
@@ -72,6 +77,9 @@ const UserActivity = () => {
                     />
                   )}
                 />
+                {/*
+<------------------- Date Picker Input that dates dates as input ------------------->
+*/}
                 <Controller
                   name="to"
                   control={control}
@@ -90,8 +98,11 @@ const UserActivity = () => {
             </LocalizationProvider>
             <h1 className="text-start textAqua mt-3">Status</h1>
             <hr />
+            {/*
+<------------------- Radio inputs that take the input of the user type ------------------->
+*/}
             <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
+              <FormLabel component="legend">User Type</FormLabel>
               <Controller
                 rules={{ required: true }}
                 control={control}
@@ -111,13 +122,16 @@ const UserActivity = () => {
                     <FormControlLabel
                       value="other"
                       control={<Radio />}
-                      label="Other"
+                      label="Bored"
                     />
                   </RadioGroup>
                 )}
               />
             </FormControl>
             <div className="d-flex justify-content-center">
+              {/*
+<------------------- Submit Button that submits the form with inputs ------------------->
+*/}
               <Button
                 type="submit"
                 className="customBtn btnAqua mt-3"

@@ -21,7 +21,6 @@ import { addFilterInput } from "../../features/Users/UsersSlice";
 
 const EditFilter = () => {
   const data = useSelector((state) => state.user.filterInput);
-  console.log(data.from, data.to);
   const previousStartDate = data.from;
   const previousEndDate = data.to;
   const dispatch = useDispatch();
@@ -42,6 +41,8 @@ const EditFilter = () => {
       userType: data.userType,
     },
   });
+  // Filter inputs are stored to the redux store on form submit
+  // Filter inputs are stored to the redux store on form submit
   const onSubmit = (data) => {
     if (previousStartDate !== data.from) {
       data.from = data.from.toLocaleDateString("en-ZA");
@@ -63,6 +64,9 @@ const EditFilter = () => {
             <hr />
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <Stack spacing={3}>
+                {/*
+<------------------- Date Picker Input that dates dates as input ------------------->
+*/}
                 <Controller
                   name="from"
                   control={control}
@@ -77,6 +81,9 @@ const EditFilter = () => {
                     />
                   )}
                 />
+                {/*
+<------------------- Date Picker Input that dates dates as input ------------------->
+*/}
                 <Controller
                   name="to"
                   control={control}
@@ -95,8 +102,11 @@ const EditFilter = () => {
             </LocalizationProvider>
             <h1 className="text-start textAqua mt-3">Status</h1>
             <hr />
+            {/*
+<------------------- Radio inputs that take the input of the user type ------------------->
+*/}
             <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
+              <FormLabel component="legend">User Type</FormLabel>
               <Controller
                 rules={{ required: true }}
                 control={control}
@@ -116,13 +126,16 @@ const EditFilter = () => {
                     <FormControlLabel
                       value="other"
                       control={<Radio />}
-                      label="Other"
+                      label="Bored"
                     />
                   </RadioGroup>
                 )}
               />
             </FormControl>
             <div className="d-flex justify-content-center">
+              {/*
+<------------------- Submit Button that submits the form with inputs ------------------->
+*/}
               <Button
                 type="submit"
                 className="customBtn btnAqua mt-3"
